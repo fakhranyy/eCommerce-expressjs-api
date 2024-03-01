@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const dbConnection = () => {
+export const dbConnection = () => {
   mongoose
     .connect(process.env.DB_URL)
     .then((conn) => {
@@ -11,4 +11,3 @@ const dbConnection = () => {
       process.exit(1); // exit the current application
     });
 };
-export { dbConnection };
