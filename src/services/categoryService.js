@@ -2,6 +2,7 @@
 import slugify from "slugify";
 import { CategoryModel } from "../models/categoryModel.js";
 import asyncHandler from "express-async-handler";
+import { ApiError } from "../utills/apiError.js";
 
 /**
  * @desc  get all categories
@@ -10,6 +11,9 @@ import asyncHandler from "express-async-handler";
  * @access public
  */
 export const getCategories = asyncHandler(async (req, res) => {
+  //? the two mehods that we are used with functions which return promises, before we use asyncHandler
+  //! 1 - .then(()=>{}).catch(()=>{})
+  //! 2 - try{} catch(){}
   const page = req.query.page * 1 || 1; // all queries treat as string
   const limit = req.query.limit * 1 || 5;
   const skip = (page - 1) * limit; //* return data per page
@@ -23,11 +27,12 @@ export const getCategories = asyncHandler(async (req, res) => {
  * @method GET
  * @access public
  */
-export const getCategory = asyncHandler(async (req, res) => {
+export const getCategory = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const category = await CategoryModel.findById(id);
   if (!category) {
-    return res.status(404).json({ message: "Category not found" });
+    // return res.status(404).json({ message: "Category not found" });
+    return next(new ApiError("Category not found for this id", 404));
   }
   res.status(200).json({ data: category });
 });
@@ -50,7 +55,7 @@ export const createCategory = asyncHandler(async (req, res) => {
  * @method PATCH
  * @access private
  */
-export const updateCategory = asyncHandler(async (req, res) => {
+export const updateCategory = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const { name } = req.body;
   const category = await CategoryModel.findByIdAndUpdate(
@@ -59,8 +64,9 @@ export const updateCategory = asyncHandler(async (req, res) => {
     { new: true } // to return the category after the update, not before it
   );
   if (!category) {
-    return res.status(404).json({ message: "Category not found" });
-  } 
+    // return res.status(404).json({ message: "Category not found" });
+    return next(new ApiError("Category not found for this id", 404));
+  }
   res.status(200).json({ data: category });
 });
 
@@ -70,13 +76,12 @@ export const updateCategory = asyncHandler(async (req, res) => {
  * @method DELETE
  * @access private
  */
-export const deleteCategory = asyncHandler(async (req, res) => {
+export const deleteCategory = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const category = await CategoryModel.findByIdAndDelete(id);
   if (!category) {
-    return res.status(404).json({ message: "Category not found" });
+    // return res.status(404).json({ message: "Category not found" });
+    return next(new ApiError("Category not found for this id", 404));
   }
   res.status(204).send();
 });
-
-
