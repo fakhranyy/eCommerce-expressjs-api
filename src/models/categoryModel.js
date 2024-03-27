@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
- const categoryShema = new Schema(
+const categoryShema = new Schema(
   {
     name: {
       type: String,
@@ -26,4 +26,4 @@ import { Schema, model } from "mongoose";
 // convert thr schema into model , that i can deal with it
 export const CategoryModel = model("Category", categoryShema);
 //! export { CategoryModel };
-// module.exports = Category //! the old way to do it
+//! module.exports = Category //! the old way to do it

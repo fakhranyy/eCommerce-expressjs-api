@@ -1,0 +1,277 @@
+{
+  "info": {
+    "_postman_id": "a9d99edf-d2b4-477d-8b47-8a64fce1603c",
+    "name": "eCommerce-express-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31885780"
+  },
+  "item": [
+    {
+      "name": "categories",
+      "item": [
+        {
+          "name": "create new category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"dd\"\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/categories",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all categoies",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"computers And laptopss\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/categories?page=1&limit=5",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "categories"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get specific category by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"computers And laptopss\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/categories/65e1cffcb3aad5d3545db8a6d",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "categories", "65e1cffcb3aad5d3545db8a6d"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update specific category by id",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/categories/65e1cffcb3aad5d3545db8a6",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "categories", "65e1cffcb3aad5d3545db8a6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete specific category by id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"ziad\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/categories/65e1cf68ef1755391c488b83",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "categories", "65e1cf68ef1755391c488b83"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "sub categories",
+      "item": [
+        {
+          "name": "create sub category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hh\",\r\n    \"category\": \"65e1d04f1771c2f00478c7f7\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/subcategories",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "subcategories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get list of sub categories",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hp\",\r\n    \"category\": \"65e1d10557497d1a1cd74da9\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/subcategories",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "subcategories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get sub category by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hp\",\r\n    \"category\": \"65e1d10557497d1a1cd74da9\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/subcategories/66043609aaade07ddf198c6b4",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "subcategories",
+                "66043609aaade07ddf198c6b4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update sub category by id",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"MacBook\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/subcategories/65e1cffcb3aad5d3545db8a6",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "subcategories", "65e1cffcb3aad5d3545db8a6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete sub category by id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hp\",\r\n    \"category\": \"65e1d10557497d1a1cd74da9\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8000/api/v1/subcategories/66043609aaade07df198c6b4",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "v1", "subcategories", "66043609aaade07df198c6b4"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

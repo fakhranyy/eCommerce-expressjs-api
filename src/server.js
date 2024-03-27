@@ -5,8 +5,8 @@ import dotenv from "dotenv";
 import categoryRouter from "./routes/categoryRoute.js";
 import { ApiError } from "./utills/apiError.js";
 import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
+import subCategoryRouter from "./routes/subCategoryRoute.js";
 dotenv.config({ path: "config.env" });
-// import './config/db.js';
 
 // connection with db
 dbConnection();
@@ -23,29 +23,30 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // routes
-app.use('/api/v1/categories', categoryRouter);
+app.use("/api/v1/categories", categoryRouter);
+app.use("/api/v1/subcategories", subCategoryRouter);
 
 // error handler for undefined routes
-app.all("*",(req, res, next) => {
-  next(new ApiError(`can't find this route: ${req.originalUrl}`, 400))
-})
+app.all("*", (req, res, next) => {
+  next(new ApiError(`can't find this route: ${req.originalUrl}`, 400));
+});
 
 //* global error handling middleware for express
-app.use(globalErrorHandler)
+app.use(globalErrorHandler);
 
 const server = app.listen(process.env.PORT || 8000, () => {
   console.log("App running on port " + process.env.PORT);
 });
 
-//? handle the rejections outside express 
+//? handle the rejections outside express
 //! Events => listen => callback(err)
-//* that let me listen on an event(unhandledRejection)
-// *it return a callback function included the error
-process.on("unhandledRejection",(err)=>{
+//! that let me listen on an event(unhandledRejection)
+//! it return a callback function included the error
+process.on("unhandledRejection", (err) => {
   console.error(`UnhandledRejection Errors: ${err.name} | ${err.message}`);
-  //* we close server first, becasue if we had a pending requests in our server we'll integrate with them first, so we stop the application After we has close the server(after finishing all reqs)
-  server.close(()=>{
-  console.error(`Shutting down...`);
+  // * we close server first, becasue if we had a pending requests in our server we'll integrate with them first, so we stop the application After we has close the server(after finishing all reqs)
+  server.close(() => {
+    console.error(`Shutting down...`);
     process.exit(1); // exit the current application
   });
-})
+});

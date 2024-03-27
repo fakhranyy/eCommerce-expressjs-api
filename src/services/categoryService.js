@@ -28,7 +28,7 @@ export const getCategories = asyncHandler(async (req, res) => {
  * @access public
  */
 export const getCategory = asyncHandler(async (req, res, next) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const category = await CategoryModel.findById(id);
   if (!category) {
     // return res.status(404).json({ message: "Category not found" });
@@ -44,7 +44,7 @@ export const getCategory = asyncHandler(async (req, res, next) => {
  * @access private
  */
 export const createCategory = asyncHandler(async (req, res) => {
-  const name = req.body.name;
+  const { name } = req.body;
   const category = await CategoryModel.create({ name, slug: slugify(name) });
   res.status(201).json({ data: category });
 });
